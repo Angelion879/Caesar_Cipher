@@ -7,8 +7,8 @@
 
 // variable declaration for all functions
 int n, k, c, o;
-char value[], val[], key[], opt[], message[];
-bool t;
+char value[0], val[2], key[2], opt[2], message[100];
+bool t, check;
 
 // functions declaration
 char option(void);
@@ -24,36 +24,40 @@ int main (void)
 	do
 	{
 		value[n] = option();
-		t = numericcheck(value);
+		check = numericcheck(value);
 	}
-	while (t == false);
+	while (check != true);
 	o = atoi(value);
 	do
 	{
 		val[n] = keyreader();
-		t = numericcheck(value);
+		check = numericcheck(val);
 	}
-	while (t == false);
+	while (check != true);
 	if (o == 1)
 	{
 		encrypt(val);
 	}
 	else if (o == 2)
 	{
-
+		decrypt(val);
 	}
+
+	return 0;
 }
 
 char option(void) // this function reads what the user wants to do
 {
-	scanf("What do you want to do? (Encript = 1; Decript = 2)\n %c", opt);
+	printf("What do you want to do? (Encript = 1; Decript = 2)\n");
+	scanf("%s", opt);
 	n = strlen(opt);
 	return opt[n];
 }
 
 char keyreader(void) // this function read the key to code or decode the message
 {
-	scanf("Ok! Now, please, insert your key (numbers only): %c", key);
+	printf("Ok! Now, please, insert your key (numbers only): ");
+	scanf("%s", key);
 	n = strlen(key);
 	return key[n];
 }
@@ -71,19 +75,20 @@ bool numericcheck(char value[]) // this function tests if the input is or not a 
 		{
 			t = true;
 		}
-		return t;
 	}
+	return t;
 }
 
 void encrypt(char key[]) // this function encrypt a message
 {
-	scanf("Clear message:\n%c", message);
+	printf("Clear message:\n");
+	scanf("%s", message);
 	n = strlen(message);
 	k = atoi(key);
 
 	for (int i = 0; i < n; i++)
 	{
-		if (((int)(message[i]) >= 'A' && (int)(message[i]) <= 'Z') || ((int)(message[i]) >= 'a' && (int)(message[i]) <= 'z'))
+		if (((int)(message[i]) >= 'A' && (int)(message[i]) <= 'Z') || ((int)(message[i]) >= 'a' && (int)(message[i]) <= 'z')) // letters
 		{
 			while (k > 26)
 			{
@@ -99,7 +104,7 @@ void encrypt(char key[]) // this function encrypt a message
 				}
 				printf("%c", c);
 			}
-			else if ((int)(message[i]) >= 'a') // lower case letters
+			else if ((int)(message[i]) >= 'a' && (int)(message[i]) <= 'z') // lower case letters
 			{
 				while(c > 148)
 				{
@@ -117,5 +122,41 @@ void encrypt(char key[]) // this function encrypt a message
 
 void decrypt(char key[]) // this function decrypt a message
 {
-	scanf("Cipher message:\n%c", message);
+	printf("Cipher message:\n");
+	scanf("%s", message);
+	n = strlen(message);
+	k = atoi(key);
+
+	for (int i = 0; i < n; i++)
+	{
+		if (((int)(message[i]) >= 'A' && (int)(message[i]) <= 'Z') || ((int)(message[i]) >= 'a' && (int)(message[i]) <= 'z'))
+		{
+			while (k > 26)
+			{
+				k = abs(k - 26);
+			}
+			c = abs((int)(message[i]) - k);
+
+			if ((int)(message[i]) >= 'A' && (int)(message[i]) <= 'Z') // upper case letters
+			{
+				while (c < 65)
+				{
+					c = abs(c + 26);
+				}
+				printf("%c", c);
+			}
+			else if ((int)(message[i]) >= 'a' && (int)(message[i]) <= 'z') // lower case letters
+			{
+				while (c < 97)
+				{
+					c = abs(c + 26);
+				}
+				printf("%c", c);
+			}
+			else // not letters
+			{
+				printf("%c", c);
+			}
+		}
+	}
 }
