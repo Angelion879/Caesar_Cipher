@@ -7,12 +7,10 @@
 
 // variable declaration for all functions
 int n, k, c, o;
-char value[0], val[2], key[2], opt[2], message[100];
+char key[3], opt[0], message[100];
 bool t, check;
 
 // functions declaration
-char option(void);
-char keyreader(void);
 bool numericcheck(char value[]);
 void encrypt(char key[]);
 void decrypt(char key[]);
@@ -20,46 +18,38 @@ void decrypt(char key[]);
 // main function
 int main (void)
 {
-	n = strlen(value);
 	do
 	{
-		value[n] = option();
-		check = numericcheck(value);
+	printf("What do you want to do? (Encript = 1; Decript = 2)\n");
+	scanf("%s", opt);
+	check = numericcheck(opt);
 	}
 	while (check != true);
-	o = atoi(value);
-	do
-	{
-		val[n] = keyreader();
-		check = numericcheck(val);
-	}
-	while (check != true);
+	
+	o = atoi(opt);
+	
 	if (o == 1)
 	{
-		encrypt(val);
+		do
+		{
+		printf("Ok! Now, please, insert your key (numbers only): ");
+		scanf("%s", key);
+		check = numericcheck(key);
+		}
+		while (check != true);
+		encrypt(key);
 	}
 	else if (o == 2)
 	{
-		decrypt(val);
+		printf("Ok! Now, please, insert your key (numbers only): ");
+		scanf("%s", key);
+		decrypt(key);
 	}
-
+	else
+	{
+		printf("ERROR 403: FORBIDEN\n");
+	}
 	return 0;
-}
-
-char option(void) // this function reads what the user wants to do
-{
-	printf("What do you want to do? (Encript = 1; Decript = 2)\n");
-	scanf("%s", opt);
-	n = strlen(opt);
-	return opt[n];
-}
-
-char keyreader(void) // this function read the key to code or decode the message
-{
-	printf("Ok! Now, please, insert your key (numbers only): ");
-	scanf("%s", key);
-	n = strlen(key);
-	return key[n];
 }
 
 bool numericcheck(char value[]) // this function tests if the input is or not a numeric character
@@ -86,6 +76,7 @@ void encrypt(char key[]) // this function encrypt a message
 	n = strlen(message);
 	k = atoi(key);
 
+	printf("Cipher message:\n");
 	for (int i = 0; i < n; i++)
 	{
 		if (((int)(message[i]) >= 'A' && (int)(message[i]) <= 'Z') || ((int)(message[i]) >= 'a' && (int)(message[i]) <= 'z')) // letters
@@ -118,6 +109,7 @@ void encrypt(char key[]) // this function encrypt a message
 			printf("%c", message[i]);
 		}
 	}
+	printf("\n");
 }
 
 void decrypt(char key[]) // this function decrypt a message
@@ -127,6 +119,7 @@ void decrypt(char key[]) // this function decrypt a message
 	n = strlen(message);
 	k = atoi(key);
 
+	printf("Clear message:\n");
 	for (int i = 0; i < n; i++)
 	{
 		if (((int)(message[i]) >= 'A' && (int)(message[i]) <= 'Z') || ((int)(message[i]) >= 'a' && (int)(message[i]) <= 'z'))
@@ -159,4 +152,5 @@ void decrypt(char key[]) // this function decrypt a message
 			}
 		}
 	}
+	printf("\n");
 }
