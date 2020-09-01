@@ -10,6 +10,8 @@ int n, k, c, o;
 char key[3], opt[0], message[100];
 bool t, check;
 
+/*still got problems with reading the message, it only encodes 1 word at a time*/
+
 // functions declaration
 bool numericcheck(char value[]);
 void encrypt(char key[]);
