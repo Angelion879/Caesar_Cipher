@@ -1,5 +1,8 @@
 # Caesar_Cipher
 *FIXING BUGS* // *REMOCAO DE BUGS*
+
+*WORK IN PROGRESS* // *EM DESENVOLVIMENTO*
+
 Caesar Cipher // Cifra de Cesar
 
 Programa simples para encriptar e decriptar mensagens pelo sistema de criptografia da Cifra de Cesar;
