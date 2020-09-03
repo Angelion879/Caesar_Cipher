@@ -74,7 +74,7 @@ bool numericcheck(char value[]) // this function tests if the input is or not a 
 void encrypt(char key[]) // this function encrypt a message
 {
 	printf("Clear message:\n");
-	scanf("%s", message);
+	scanf("%[^\n]", message);
 	n = strlen(message);
 	k = atoi(key);
 
@@ -117,7 +117,7 @@ void encrypt(char key[]) // this function encrypt a message
 void decrypt(char key[]) // this function decrypt a message
 {
 	printf("Cipher message:\n");
-	scanf("%s", message);
+	scanf("%[^\n]", message);
 	n = strlen(message);
 	k = atoi(key);
 
