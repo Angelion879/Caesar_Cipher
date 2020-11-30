@@ -1,6 +1,5 @@
 import math
 import string
-import boolean
 import sys
 import os
 
@@ -15,7 +14,7 @@ def opReader ():
 def keyReader ():
 	#this reads the key to encode or decode
 	key = input('Please insert your numeric secret key: ')
-	for n in range(0, len(key), 1):
+	for n in range(0, len(list(key)), 1):
 		if((key[n] < '0') or (key[n] > '9')):
 			sys.stdout.write('Please insert a valid Key\n')
 			keyReader()
