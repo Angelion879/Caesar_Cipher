@@ -5,7 +5,7 @@ import sys
 import os
 
 def opReader ():
-	#This read what the user wants 2 do & calls the key reader
+	#This read what the user wants 2 do
 	op = input('What do you want to do today?\nEncipher = 1\nDecipher = 2\n')
 	if (curses.ascii.isalpha(op) == 1 or (1 > int(op) or int(op) > 2):
 		sys.stdout.write('Please insert an valid option\n')
