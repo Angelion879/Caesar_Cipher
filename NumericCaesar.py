@@ -18,10 +18,6 @@ def key_Reader ():
 		if (key[n] in string.ascii_letters):
 			sys.stdout.write('Please insert a valid Key\n')
 			key_Reader()
-	#keep the loop with only alphabetic characters
-	if(int(key) > 26):
-		while (int(key) > 26):
-			key = int(key) - 26
 	return int(key)
 	
 
@@ -34,19 +30,47 @@ def encrypt (k):
 			if (message[n] in string.ascii_lowercase):
 				ALPHA = list(string.ascii_lowercase)
 				cipher = ALPHA.index(message[n]) + k
+				#keep the loop with only alphabetic characters
+				while (cipher > 25):
+					cipher = (cipher - 26)
 				sys.stdout.write(string.ascii_lowercase[cipher])
 			elif (message[n] in string.ascii_uppercase):
 				ALPHA = list(string.ascii_uppercase)
 				cipher = ALPHA.index(message[n]) + k
+				#keep the loop with only alphabetic characters
+				while (cipher > 25):
+					cipher = (cipher - 26)
 				sys.stdout.write(string.ascii_uppercase[cipher])
 		else:
 			sys.stdout.write(message[n])
 
-#def decrypt (k):
+def decrypt (k):
 	#this code decrypts a message
+	message = input('What do you want to decrypt?\n')
+	for n in range(0, len(list(message))):
+		#this guarantee only letters will change
+		if (message[n] in string.ascii_letters):
+			if (message[n] in string.ascii_lowercase):
+				ALPHA = list(string.ascii_lowercase)
+				clear = ALPHA.index(message[n]) - k
+				#keep the loop with only alphabetic characters
+				while (clear < 0):
+					clear = clear + 26
+				sys.stdout.write(string.ascii_lowercase[clear])
+			elif (message[n] in string.ascii_uppercase):
+				ALPHA = list(string.ascii_uppercase)
+				clear = ALPHA.index(message[n]) - k
+				#keep the loop with only alphabetic characters
+				while (clear < 0):
+					clear = clear + 26
+				sys.stdout.write(string.ascii_uppercase[clear])
+		else:
+			sys.stdout.write(message[n])
 
 if __name__ == '__main__':
 	#This is the main class c: 
 	option = op_Reader()
 	if option == '1':
 		encrypt(key_Reader())
+	elif option == '2':
+		decrypt(key_Reader())
