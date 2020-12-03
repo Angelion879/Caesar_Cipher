@@ -7,7 +7,7 @@ import os
 def opReader ():
 	#This read what the user wants 2 do
 	op = input('What do you want to do today?\nEncipher = 1\nDecipher = 2\n')
-	if (curses.ascii.isalpha(op) == 1 or (1 > int(op) or int(op) > 2):
+	if (curses.ascii.isalpha(op) == 1 or (1 > int(op) or int(op) > 2)):
 		sys.stdout.write('Please insert an valid option\n')
 		opReader()
 	return op
@@ -19,6 +19,9 @@ def keyReader ():
 		if (curses.ascii.isalpha(key[n]) == 1):
 			sys.stdout.write('Please insert a valid Key\n')
 			keyReader()
+	if(int(key) > 26):
+		while (int(key) > 26):
+			key = int(key) - 26
 	return int(key)
 	
 
