@@ -1,16 +1,12 @@
 import math
 import string
-import curses.ascii
 import sys
 import os
-
-#Constants:
-ALPHA = ['a','b','c']
 
 def opReader ():
 	#This read what the user wants 2 do
 	op = input('What do you want to do today?\nEncipher = 1\nDecipher = 2\n')
-	if (curses.ascii.isalpha(op) == 1 or (1 > int(op) or int(op) > 2)):
+	if (op in string.ascii_letters or (1 > int(op) or int(op) > 2)):
 		sys.stdout.write('Please insert an valid option\n')
 		opReader()
 	return op
@@ -19,7 +15,7 @@ def keyReader ():
 	#this reads the key to encode or decode
 	key = input('Please insert your numeric secret key: ')
 	for n in range(0, len(list(key)), 1):
-		if (curses.ascii.isalpha(key[n]) == 1):
+		if (key[n] in string.ascii_letters):
 			sys.stdout.write('Please insert a valid Key\n')
 			keyReader()
 	#keep the loop with only alphabetic characters
@@ -34,12 +30,15 @@ def encrypt (K):
 	message = input('What do you want to encrypt?\n')
 	for n in range(0, len(list(message))):
 		#this guarantee only letters will change
-		if (curses.ascii.isalpha(message[n]) == 1):
-			cipher = "aaaaaaaaa"
-			#WORK IN PROCESS
-			#compare to alpha;
-			#check if it is a capital or a lower case;
-			#takes the map number, sums to the K & writes the corresponding letter
+		if (message[n] in string.ascii_letters):
+			if (message[n] in string.ascii_lowercase):
+				ALPHA = list(string.ascii_lowercase)
+				cipher = ALPHA.index(message[n]) + K
+				sys.stdout.write(string.ascii_lowercase[cipher])
+			elif (message[n] in string.ascii_uppercase):
+				ALPHA = list(string.ascii_uppercase)
+				cipher = ALPHA.index(message[n]) + K
+				sys.stdout.write(string.ascii_uppercase[cipher])
 		else:
 			sys.stdout.write(message[n])
 
