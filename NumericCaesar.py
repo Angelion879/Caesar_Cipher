@@ -4,6 +4,7 @@ import sys
 import os
 
 def op_Reader ():
+	os.system('cls')
 	#This read what the user wants 2 do
 	op = input('What do you want to do today?\nEncipher = 1\nDecipher = 2\n')
 	if (op in string.ascii_letters or (1 > int(op) or int(op) > 2)):
@@ -12,6 +13,7 @@ def op_Reader ():
 	return op
 
 def key_Reader ():
+	os.system('cls')
 	#this reads the key to encode or decode
 	key = input('Please insert your numeric secret key: ')
 	for n in range(0, len(list(key)), 1):
