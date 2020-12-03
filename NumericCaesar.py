@@ -34,14 +34,14 @@ def encrypt (k):
 				cipher = ALPHA.index(message[n]) + k
 				#keep the loop with only alphabetic characters
 				while (cipher > 25):
-					cipher = (cipher - 26)
+					cipher -= 26
 				sys.stdout.write(string.ascii_lowercase[cipher])
 			elif (message[n] in string.ascii_uppercase):
 				ALPHA = list(string.ascii_uppercase)
 				cipher = ALPHA.index(message[n]) + k
 				#keep the loop with only alphabetic characters
 				while (cipher > 25):
-					cipher = (cipher - 26)
+					cipher -= 26
 				sys.stdout.write(string.ascii_uppercase[cipher])
 		else:
 			sys.stdout.write(message[n])
@@ -57,14 +57,14 @@ def decrypt (k):
 				clear = ALPHA.index(message[n]) - k
 				#keep the loop with only alphabetic characters
 				while (clear < 0):
-					clear = clear + 26
+					clear += 26
 				sys.stdout.write(string.ascii_lowercase[clear])
 			elif (message[n] in string.ascii_uppercase):
 				ALPHA = list(string.ascii_uppercase)
 				clear = ALPHA.index(message[n]) - k
 				#keep the loop with only alphabetic characters
 				while (clear < 0):
-					clear = clear + 26
+					clear += 26
 				sys.stdout.write(string.ascii_uppercase[clear])
 		else:
 			sys.stdout.write(message[n])
