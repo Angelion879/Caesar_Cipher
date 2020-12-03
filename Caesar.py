@@ -4,6 +4,9 @@ import curses.ascii
 import sys
 import os
 
+#Constants:
+ALPHA = ['a','b','c']
+
 def opReader ():
 	#This read what the user wants 2 do
 	op = input('What do you want to do today?\nEncipher = 1\nDecipher = 2\n')
@@ -19,6 +22,7 @@ def keyReader ():
 		if (curses.ascii.isalpha(key[n]) == 1):
 			sys.stdout.write('Please insert a valid Key\n')
 			keyReader()
+	#keep the loop with only alphabetic characters
 	if(int(key) > 26):
 		while (int(key) > 26):
 			key = int(key) - 26
@@ -30,12 +34,12 @@ def encrypt (K):
 	message = input('What do you want to encrypt?\n')
 	for n in range(0, len(list(message))):
 		#this guarantee only letters will change
-		if (('Z' >= message[n] >= 'A') or ('z' >= message[n] >= 'a')):
-			#keep the loop with only alphabetic characters
-			while (K > 26):
-				K = abs(K - 26)
-			cipher = str(int(message[n]) + K)
-			sys.stdout.write(cipher)
+		if (curses.ascii.isalpha(message[n]) == 1):
+			cipher = "aaaaaaaaa"
+			#WORK IN PROCESS
+			#compare to alpha;
+			#check if it is a capital or a lower case;
+			#takes the map number, sums to the K & writes the corresponding letter
 		else:
 			sys.stdout.write(message[n])
 
