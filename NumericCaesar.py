@@ -22,27 +22,25 @@ def key_Reader ():
 			key_Reader()
 	return int(key)
 	
-
 def encrypt (k):
 	#this code encrypts a message
 	message = input('What do you want to encrypt?\n')
 	for n in range(0, len(list(message))):
 		#this guarantee only letters will change
-		if (message[n] in string.ascii_letters):
-			if (message[n] in string.ascii_lowercase):
-				ALPHA = list(string.ascii_lowercase)
-				cipher = ALPHA.index(message[n]) + k
-				#keep the loop with only alphabetic characters
-				while (cipher > 25):
-					cipher -= 26
-				sys.stdout.write(string.ascii_lowercase[cipher])
-			elif (message[n] in string.ascii_uppercase):
-				ALPHA = list(string.ascii_uppercase)
-				cipher = ALPHA.index(message[n]) + k
-				#keep the loop with only alphabetic characters
-				while (cipher > 25):
-					cipher -= 26
-				sys.stdout.write(string.ascii_uppercase[cipher])
+		if (message[n] in string.ascii_lowercase):
+			ALPHA = list(string.ascii_lowercase)
+			cipher = ALPHA.index(message[n]) + k
+			#keep the loop with only alphabetic characters
+			while (cipher > 25):
+				cipher -= 26
+			sys.stdout.write(string.ascii_lowercase[cipher])
+		elif (message[n] in string.ascii_uppercase):
+			ALPHA = list(string.ascii_uppercase)
+			cipher = ALPHA.index(message[n]) + k
+			#keep the loop with only alphabetic characters
+			while (cipher > 25):
+				cipher -= 26
+			sys.stdout.write(string.ascii_uppercase[cipher])
 		else:
 			sys.stdout.write(message[n])
 
@@ -51,21 +49,20 @@ def decrypt (k):
 	message = input('What do you want to decrypt?\n')
 	for n in range(0, len(list(message))):
 		#this guarantee only letters will change
-		if (message[n] in string.ascii_letters):
-			if (message[n] in string.ascii_lowercase):
-				ALPHA = list(string.ascii_lowercase)
-				clear = ALPHA.index(message[n]) - k
-				#keep the loop with only alphabetic characters
-				while (clear < 0):
-					clear += 26
-				sys.stdout.write(string.ascii_lowercase[clear])
-			elif (message[n] in string.ascii_uppercase):
-				ALPHA = list(string.ascii_uppercase)
-				clear = ALPHA.index(message[n]) - k
-				#keep the loop with only alphabetic characters
-				while (clear < 0):
-					clear += 26
-				sys.stdout.write(string.ascii_uppercase[clear])
+		if (message[n] in string.ascii_lowercase):
+			ALPHA = list(string.ascii_lowercase)
+			clear = ALPHA.index(message[n]) - k
+			#keep the loop with only alphabetic characters
+			while (clear < 0):
+				clear += 26
+			sys.stdout.write(string.ascii_lowercase[clear])
+		elif (message[n] in string.ascii_uppercase):
+			ALPHA = list(string.ascii_uppercase)
+			clear = ALPHA.index(message[n]) - k
+			#keep the loop with only alphabetic characters
+			while (clear < 0):
+				clear += 26
+			sys.stdout.write(string.ascii_uppercase[clear])
 		else:
 			sys.stdout.write(message[n])
 
